@@ -28,11 +28,11 @@ export function generateArticleJsonLd(
     dateModified: (post.updatedDate ?? post.pubDate).toISOString(),
     author: {
       '@type': 'Person',
-      name: post.author ?? 'NOICELAND',
+      name: post.author ?? 'ChinaAI',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'NOICELAND',
+      name: 'ChinaAI',
       url: siteUrl,
     },
     url: pageUrl,

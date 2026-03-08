@@ -2,7 +2,7 @@
 title: "Color Theory for the Digital Age"
 description: "Understanding how color functions differently on screens than in print, and how to make intentional choices that survive the journey across devices."
 pubDate: 2025-10-28
-author: "NOICELAND"
+author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/color-theory/1200/630"
 tags: ["Design", "Color", "Visual"]
 category: "Design"

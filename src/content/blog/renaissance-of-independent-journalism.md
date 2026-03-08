@@ -2,7 +2,7 @@
 title: "The Renaissance of Independent Journalism"
 description: "As traditional media continues to contract, a new generation of independent writers and publications is finding sustainable audiences."
 pubDate: 2025-12-05
-author: "NOICELAND"
+author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/journalism/1200/630"
 tags: ["Culture", "Journalism", "Media"]
 category: "Culture"

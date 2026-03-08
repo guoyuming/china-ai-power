@@ -2,7 +2,7 @@
 title: "The Future of AI in Everyday Computing"
 description: "How artificial intelligence is quietly reshaping the tools we use every day, from search to creative work."
 pubDate: 2026-02-15
-author: "NOICELAND"
+author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/ai-computing/1200/630"
 tags: ["Technology", "AI", "Future"]
 category: "Technology"

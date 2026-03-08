@@ -2,7 +2,7 @@
 title: "A Week in Iceland: Land of Fire and Permanent Light"
 description: "Seven days driving the ring road in midsummer, where the sun never quite sets and the landscape refuses to behave like anywhere else on earth."
 pubDate: 2025-11-22
-author: "NOICELAND"
+author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/iceland/1200/630"
 tags: ["Travel", "Iceland", "Adventure"]
 category: "Travel"

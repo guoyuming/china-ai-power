@@ -40,10 +40,10 @@ const {
   pageUrl,
 } = Astro.props;
 
-const authorName = author ?? 'NOICELAND';
+const authorName = author ?? 'ChinaAI';
 const formattedDate = formatDate(pubDate);
 
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://noiceland.com';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://china-ai-power.pages.dev';
 const resolvedPageUrl = pageUrl ?? canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).toString();
 
 const jsonLd = generateArticleJsonLd(
@@ -54,7 +54,7 @@ const jsonLd = generateArticleJsonLd(
 ---
 
 <BaseLayout
-  title={`${title} — NOICELAND`}
+  title={`${title} — ChinaAI`}
   description={description}
   image={heroImage}
   canonicalUrl={canonicalUrl}

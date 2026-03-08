@@ -2,7 +2,7 @@
 title: "The Ethics of Algorithmic Decision Making"
 description: "When algorithms decide who gets a loan, who sees a job posting, or who is released on bail, the stakes of system design become impossible to ignore."
 pubDate: 2025-11-10
-author: "NOICELAND"
+author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/algo-ethics/1200/630"
 tags: ["Technology", "Ethics", "AI"]
 category: "Technology"

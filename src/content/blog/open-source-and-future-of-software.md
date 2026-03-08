@@ -2,7 +2,7 @@
 title: "Open Source and the Future of Software Development"
 description: "How the open source movement has quietly become the backbone of modern software, and what that means for how we build things."
 pubDate: 2026-01-12
-author: "NOICELAND"
+author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/open-source/1200/630"
 tags: ["Technology", "Open Source", "Software"]
 category: "Technology"

@@ -9,7 +9,7 @@ interface Props {
 
 const { post, size = 'default' } = Astro.props;
 const { title, author, heroImage, category } = post.data;
-const authorName = author ?? 'NOICELAND';
+const authorName = author ?? 'ChinaAI';
 const href = `/blog/${post.id}`;
 const timeToRead = readingTime(post.body ?? '');
 ---

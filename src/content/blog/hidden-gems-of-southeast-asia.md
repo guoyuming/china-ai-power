@@ -2,7 +2,7 @@
 title: "Hidden Gems of Southeast Asia's Interior"
 description: "Beyond the crowded coastlines and famous temples, the interior of Southeast Asia holds landscapes and communities that most travelers never see."
 pubDate: 2026-01-20
-author: "NOICELAND"
+author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/southeast-asia/1200/630"
 tags: ["Travel", "Asia", "Adventure"]
 category: "Travel"

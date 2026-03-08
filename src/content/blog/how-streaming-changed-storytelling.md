@@ -2,7 +2,7 @@
 title: "How Streaming Changed Our Relationship with Stories"
 description: "The shift from weekly television to on-demand streaming has done more than change viewing habits — it has changed how stories are told."
 pubDate: 2026-01-28
-author: "NOICELAND"
+author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/streaming-story/1200/630"
 tags: ["Culture", "Streaming", "Entertainment"]
 category: "Culture"

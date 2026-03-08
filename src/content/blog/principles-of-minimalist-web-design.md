@@ -2,7 +2,7 @@
 title: "Principles of Minimalist Web Design"
 description: "Why less continues to be more in an era of overwhelming digital complexity, and how restraint produces better outcomes."
 pubDate: 2026-02-10
-author: "NOICELAND"
+author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/minimalist-design/1200/630"
 tags: ["Design", "Minimalism", "Web"]
 category: "Design"

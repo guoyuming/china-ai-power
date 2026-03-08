@@ -2,7 +2,7 @@
 title: "Typography as the Foundation of Visual Identity"
 description: "Before color, before imagery, before layout — typography is the first decision that shapes how a brand feels."
 pubDate: 2025-12-18
-author: "NOICELAND"
+author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/typography/1200/630"
 tags: ["Design", "Typography", "Branding"]
 category: "Design"
