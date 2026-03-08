@@ -38,7 +38,7 @@ const {
 
 const formattedDate = formatDate(pubDate);
 
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://china-ai-power.pages.dev';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://chinaaidigest.com';
 const resolvedPageUrl = pageUrl ?? canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).toString();
 
 const jsonLd = generateArticleJsonLd(

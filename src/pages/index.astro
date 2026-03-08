@@ -9,8 +9,8 @@ const allPosts = (await getCollection('blog'))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const heroPost = allPosts.find(p => p.data.featured) ?? allPosts[0];
-const remainingPosts = allPosts.filter(p => p.id !== heroPost.id);
+const heroPost = allPosts.length > 0 ? (allPosts.find(p => p.data.featured) ?? allPosts[0]) : null;
+const remainingPosts = heroPost ? allPosts.filter(p => p.id !== heroPost.id) : [];
 
 const featuredPosts = remainingPosts.slice(0, 6);
 const latestPosts = remainingPosts.slice(0, 8);
@@ -18,17 +18,24 @@ const bottomPosts = remainingPosts.slice(6, 10);
 ---
 
 <BaseLayout
-  title="ChinaAI — Stories that matter"
-  description="ChinaAI is an editorial blog covering technology, design, culture, and travel."
-  preloadImage={heroPost.data.heroImage}
+  title="China AI Digest — Your weekly briefing on China's AI industry"
+  description="China AI Digest covers AI policy, research, and companies shaping China's artificial intelligence landscape."
+  preloadImage={heroPost?.data.heroImage}
 >
+  {allPosts.length === 0 ? (
+    <div class="coming-soon container">
+      <h1 class="coming-soon-title">Coming Soon</h1>
+      <p class="coming-soon-text">The first edition is on its way. Check back soon.</p>
+    </div>
+  ) : (
+    <>
   <!-- Hero Section -->
   <section class="hero-section container">
     <div class="hero-image-side">
-      {heroPost.data.heroImage ? (
+      {heroPost!.data.heroImage ? (
         <img
-          src={heroPost.data.heroImage}
-          alt={heroPost.data.title}
+          src={heroPost!.data.heroImage}
+          alt={heroPost!.data.title}
           loading="eager"
           fetchpriority="high"
           class="hero-img"
@@ -39,10 +46,10 @@ const bottomPosts = remainingPosts.slice(6, 10);
     </div>
     <div class="hero-content">
       <h1 class="hero-title">
-        <a href={`/blog/${heroPost.id}`}>{heroPost.data.title}</a>
+        <a href={`/blog/${heroPost!.id}`}>{heroPost!.data.title}</a>
       </h1>
       <p class="hero-excerpt">
-        {heroPost.data.description}
+        {heroPost!.data.description}
       </p>
     </div>
   </section>
@@ -79,6 +86,8 @@ const bottomPosts = remainingPosts.slice(6, 10);
       </div>
     </section>
   )}
+    </>
+  )}
 
   <!-- Newsletter Strip -->
   <section class="newsletter-strip">
@@ -86,7 +95,7 @@ const bottomPosts = remainingPosts.slice(6, 10);
       <div class="newsletter-text">
         <h2 class="newsletter-heading">Stay in the loop</h2>
         <p class="newsletter-sub">
-          New stories on technology, design, culture, and travel — delivered when they matter.
+          China AI news, policy, and research — delivered to your inbox.
         </p>
       </div>
       <div class="newsletter-form">
@@ -105,6 +114,27 @@ const bottomPosts = remainingPosts.slice(6, 10);
 </BaseLayout>
 
 <style>
+  /* Coming Soon */
+  .coming-soon {
+    padding: 120px 0;
+    text-align: center;
+  }
+
+  .coming-soon-title {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .coming-soon-text {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: var(--text-secondary);
+  }
+
   /* Hero Section */
   .hero-section {
     display: grid;

@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://china-ai-power.pages.dev',
+  site: 'https://chinaaidigest.com',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

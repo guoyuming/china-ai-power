@@ -1,11 +1,11 @@
-# CLAUDE.md — NOICELAND Blog
+# CLAUDE.md — China AI Blog
 
 ## Project Overview
-NOICELAND is a content-oriented editorial blog built with Astro 5, Tailwind CSS v4,
+China AI is a content-oriented editorial blog built with Astro 5, Tailwind CSS v4,
 deployed to Cloudflare Pages as a fully static site (SSG).
 
 The visual design follows a detailed design system document at
-`design-reference/NOICELAND-Design-System.md`. Read that file for full component
+`design-reference/China AI-Design-System.md`. Read that file for full component
 specs, page layouts, interaction patterns, and responsive rules.
 
 **CRITICAL**: Follow the design system LITERALLY. Do not improvise colors, spacing,
@@ -17,55 +17,8 @@ or typography outside the defined tokens.
 - Astro Docs MCP: https://mcp.docs.astro.build/mcp
   (real-time API documentation lookup)
 - Use the Skill's patterns for Astro-specific implementation details.
-- Use this CLAUDE.md for NOICELAND-specific design, layout, and architecture rules.
+- Use this CLAUDE.md for China AI-specific design, layout, and architecture rules.
 - When the Skill and this file conflict, THIS FILE wins (project-specific overrides general).
-```
-
----
-
-**Updated CLI workflow — what to say in each session:**
-
-Phase 1:
-```
-I have the publishing-astro-websites skill installed and the Astro Docs MCP 
-connected. Use them for Astro best practices and API reference.
-
-Read design-reference/tasks/phase-1-foundation.md for what to build.
-Read design-reference/NOICELAND-Design-System.md for the complete design system.
-Follow CLAUDE.md for project-specific rules.
-
-Use the skill's Content Collections patterns for setting up the blog collection.
-Use the skill's Markdown/MDX patterns for content rendering.
-All visual design must follow the NOICELAND design system exactly.
-
-Start with project initialization, then components, layouts, pages.
-Verify npm run dev works after each major step.
-```
-
-Phase 2:
-```
-Read design-reference/tasks/phase-2-seo-search.md and implement everything.
-
-Use the skill's Pagefind patterns for search setup.
-Use the skill's RSS feed patterns.
-Follow CLAUDE.md for NOICELAND-specific rules.
-Use the Astro Docs MCP if you need to look up any API details.
-```
-
-Phase 3:
-```
-Read design-reference/tasks/phase-3-content-experience.md and implement everything.
-Follow CLAUDE.md and the design system for all styling decisions.
-```
-
-Phase 4:
-```
-Read design-reference/tasks/phase-4-polish-launch.md and implement everything.
-
-NOTE: We deploy to Cloudflare Pages, NOT Firebase/Netlify/Vercel.
-The skill may reference other platforms — ignore those, use Cloudflare Pages.
-Build command: npm run build
-Output directory: dist
 
 ## Tech Stack
 - Astro 5.x with Content Collections (glob loader, Zod schemas)
@@ -153,7 +106,7 @@ Output directory: dist
 
 ## Content Schema
 Required: title, description, pubDate, tags, draft
-Optional: updatedDate, author, heroImage, category, featured, canonicalUrl, excerpt
+Optional: updatedDate, heroImage, featured
 
 ## Pages
 1. `/` — Homepage: Hero + FeaturedGrid (6) + LatestPosts (8) + BottomGrid (4) + FullFooter
