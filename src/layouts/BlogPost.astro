@@ -1,0 +1,323 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import MinimalFooter from '../components/MinimalFooter.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import ShareButtons from '../components/ShareButtons.astro';
+import { generateArticleJsonLd } from '../utils/seo';
+import { formatDate } from '../utils/date';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  heroImage?: string;
+  author?: string;
+  category?: string;
+  canonicalUrl?: string;
+  readingTime?: string;
+  headings?: Heading[];
+  pageUrl?: string;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  author,
+  category,
+  canonicalUrl,
+  readingTime,
+  headings = [],
+  pageUrl,
+} = Astro.props;
+
+const authorName = author ?? 'NOICELAND';
+const formattedDate = formatDate(pubDate);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://noiceland.com';
+const resolvedPageUrl = pageUrl ?? canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).toString();
+
+const jsonLd = generateArticleJsonLd(
+  { title, description, pubDate, updatedDate, heroImage, author },
+  siteUrl,
+  resolvedPageUrl
+);
+---
+
+<BaseLayout
+  title={`${title} — NOICELAND`}
+  description={description}
+  image={heroImage}
+  canonicalUrl={canonicalUrl}
+  jsonLd={jsonLd}
+>
+  <article class="blog-article">
+    <!-- Article Header -->
+    <div class="article-header-outer">
+      <div class="article-header">
+        {category && <span class="category-label">{category}</span>}
+        <h1 class="article-title">{title}</h1>
+        <div class="author-row">
+          <div class="author-info">
+            <span class="author-name">BY {authorName}</span>
+            <span class="article-date">{formattedDate}</span>
+            {readingTime && <span class="reading-time">{readingTime}</span>}
+          </div>
+        </div>
+        <ShareButtons title={title} url={resolvedPageUrl} />
+      </div>
+    </div>
+
+    <!-- Hero Image -->
+    {heroImage && (
+      <div class="hero-image-wrapper" data-pagefind-ignore>
+        <img
+          src={heroImage}
+          alt={title}
+          class="hero-image"
+          loading="eager"
+          fetchpriority="high"
+          transition:name={`hero-${Astro.url.pathname}`}
+        />
+      </div>
+    )}
+
+    <!-- Article Body: content + optional TOC sidebar -->
+    <div class="article-body-wrapper">
+      <div class="article-main">
+        <!-- Mobile TOC (shown below 1200px) -->
+        <div class="toc-inline-wrapper">
+          <TableOfContents headings={headings} />
+        </div>
+
+        <!-- Article Content -->
+        <div class="article-content prose" data-pagefind-body>
+          <slot />
+        </div>
+      </div>
+
+      <!-- Desktop TOC sidebar (shown at ≥1200px) -->
+      {headings.filter(h => h.depth === 2 || h.depth === 3).length >= 3 && (
+        <aside class="article-sidebar" aria-label="Table of contents">
+          <div class="sidebar-sticky">
+            <TableOfContents headings={headings} />
+          </div>
+        </aside>
+      )}
+    </div>
+
+    <!-- Related posts slot -->
+    <slot name="related" />
+  </article>
+
+  <MinimalFooter slot="footer" />
+</BaseLayout>
+
+<!-- Copy-to-clipboard for code blocks -->
+<script>
+  document.querySelectorAll('pre').forEach(pre => {
+    const wrapper = document.createElement('div');
+    wrapper.style.position = 'relative';
+    pre.parentNode?.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+
+    const btn = document.createElement('button');
+    btn.textContent = 'Copy';
+    btn.className = 'code-copy-btn';
+    btn.setAttribute('aria-label', 'Copy code');
+    wrapper.appendChild(btn);
+
+    btn.addEventListener('click', async () => {
+      const code = pre.querySelector('code')?.textContent ?? pre.textContent ?? '';
+      try {
+        await navigator.clipboard.writeText(code);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = code;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    });
+  });
+</script>
+
+<style>
+  /* ── Article Header ── */
+  .article-header-outer {
+    padding: 48px 24px 32px;
+  }
+
+  .article-header {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .category-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+  }
+
+  .article-title {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-primary);
+  }
+
+  .author-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .author-name {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+  }
+
+  .article-date::before,
+  .reading-time::before {
+    content: '·';
+    margin-right: 8px;
+    color: var(--color-gray-400);
+  }
+
+  .article-date,
+  .reading-time {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+  }
+
+  /* ── Hero Image ── */
+  .hero-image-wrapper {
+    width: 100%;
+    margin-bottom: 48px;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-height: 560px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Article body: content + sidebar ── */
+  .article-body-wrapper {
+    display: block;
+    padding: 0 24px;
+  }
+
+  .article-main {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .toc-inline-wrapper {
+    /* visible below 1200px — TableOfContents hides .toc-desktop internally */
+  }
+
+  .article-content {
+    padding-bottom: 0;
+  }
+
+  /* Desktop: sidebar layout at ≥1200px */
+  .article-sidebar {
+    display: none;
+  }
+
+  @media (min-width: 1200px) {
+    .article-body-wrapper {
+      display: grid;
+      grid-template-columns: 680px 200px;
+      gap: 64px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+      align-items: start;
+    }
+
+    .article-main {
+      max-width: none;
+      margin: 0;
+    }
+
+    .article-sidebar {
+      display: block;
+    }
+
+    .sidebar-sticky {
+      position: sticky;
+      top: 32px;
+    }
+  }
+
+  /* ── Copy code button ── */
+  :global(.code-copy-btn) {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    border-radius: 0;
+    line-height: 1.4;
+  }
+
+  :global(.code-copy-btn:hover) {
+    opacity: 1;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 767px) {
+    .article-title {
+      font-size: 32px;
+    }
+
+    .article-header-outer {
+      padding: 32px 24px 24px;
+    }
+  }
+</style>

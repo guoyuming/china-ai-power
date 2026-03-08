@@ -1,0 +1,240 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-gray-900: #111111;
+  --color-gray-800: #222222;
+  --color-gray-600: #666666;
+  --color-gray-500: #999999;
+  --color-gray-400: #AAADB0;
+  --color-gray-300: #CCCCCC;
+  --color-gray-200: #E2E2E2;
+  --color-gray-100: #E6E6E6;
+  --color-blue-500: #0000EE;
+  --color-blue-400: #3898EC;
+
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+/* Design system CSS custom properties */
+:root {
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-900: #111111;
+  --color-gray-800: #222222;
+  --color-gray-600: #666666;
+  --color-gray-500: #999999;
+  --color-gray-400: #aaadb0;
+  --color-gray-300: #cccccc;
+  --color-gray-200: #e2e2e2;
+  --color-gray-100: #e6e6e6;
+  --color-blue-500: #0000ee;
+  --color-blue-400: #3898ec;
+  --color-white-alpha: rgba(255, 255, 255, 0.1);
+
+  /* Semantic */
+  --text-primary: var(--color-black);
+  --text-secondary: var(--color-gray-600);
+  --text-body: var(--color-gray-800);
+  --text-light: var(--color-white);
+  --text-placeholder: var(--color-gray-500);
+  --text-disabled: var(--color-gray-400);
+
+  --bg-page: var(--color-white);
+  --bg-footer: var(--color-gray-900);
+
+  --border-default: var(--color-gray-300);
+  --border-focus: var(--color-blue-400);
+  --border-decorative: var(--color-gray-200);
+  --border-footer: var(--color-white-alpha);
+
+  --link-default: var(--color-blue-500);
+
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+
+  --container-max-width: 1200px;
+  --container-padding-desktop: 0 48px;
+  --container-padding-mobile: 0 24px;
+  --article-max-width: 680px;
+  --article-header-max-width: 800px;
+
+  --transition-fast: 0.2s ease;
+  --transition-default: 0.3s ease;
+}
+
+/* Skip-to-content link (accessibility) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 8px;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  padding: 8px 16px;
+  z-index: 9999;
+  text-decoration: none;
+  transition: top 0.1s ease;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+/* Global reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--container-padding-desktop);
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: var(--container-padding-mobile);
+  }
+}
+
+/* Focus states */
+input:focus {
+  border-color: var(--border-focus);
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Prose overrides for article content */
+.prose {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-gray-800);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  font-family: var(--font-serif);
+  color: var(--text-primary);
+}
+
+.prose p {
+  margin-bottom: 24px;
+}
+
+.prose ul {
+  padding-left: 24px;
+  margin-bottom: 24px;
+  list-style-type: disc;
+}
+
+.prose ol {
+  padding-left: 24px;
+  margin-bottom: 24px;
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin-bottom: 8px;
+}
+
+.prose img {
+  width: 100%;
+  margin: 32px 0;
+}
+
+.prose blockquote {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.5;
+  border-top: 2px solid var(--color-gray-800);
+  border-left: none;
+  padding-top: 30px;
+  padding-left: 0;
+  margin: 40px 0 30px;
+  font-style: normal;
+}
+
+.prose a {
+  color: var(--color-blue-500);
+}
+
+.prose code {
+  font-family: monospace;
+  font-size: 0.9em;
+  background: var(--color-gray-100);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.prose pre {
+  margin: 24px 0;
+  border-radius: 0;
+  overflow-x: auto;
+}
+
+@media (max-width: 767px) {
+  .prose {
+    font-size: 16px;
+  }
+
+  .prose blockquote {
+    font-size: 20px;
+  }
+}

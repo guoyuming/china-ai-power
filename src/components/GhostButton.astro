@@ -1,0 +1,33 @@
+---
+interface Props {
+  href: string;
+  text: string;
+}
+
+const { href, text } = Astro.props;
+---
+
+<a href={href} class="ghost-button">{text}</a>
+
+<style>
+  .ghost-button {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 32px;
+    border: 1px solid var(--color-black);
+    background: transparent;
+    color: var(--text-primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ghost-button:hover {
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+</style>

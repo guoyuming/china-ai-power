@@ -1,0 +1,56 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalUrl?: string;
+  jsonLd?: string;
+}
+
+const { title, description, image = '/og-default.jpg', canonicalUrl, jsonLd } = Astro.props;
+const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = image.startsWith('http') ? image : new URL(image, Astro.site).toString();
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content="website" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- Sitemap & RSS -->
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title="NOICELAND RSS Feed" href="/rss.xml" />
+
+<!-- JSON-LD Structured Data -->
+{jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+
+<!-- Cloudflare Web Analytics — replace TOKEN with your beacon token from Cloudflare Pages → Analytics -->
+{import.meta.env.PROD && (
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "REPLACE_WITH_YOUR_CF_ANALYTICS_TOKEN"}'
+  />
+)}

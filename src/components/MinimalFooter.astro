@@ -1,0 +1,39 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="minimal-footer" data-pagefind-ignore>
+  <div class="container minimal-footer-inner">
+    <a href="/" class="footer-logo">NOICELAND</a>
+    <span class="footer-copyright">&copy; {currentYear} NOICELAND</span>
+  </div>
+</footer>
+
+<style>
+  .minimal-footer {
+    background-color: #111111;
+    color: white;
+    padding: 24px 0;
+  }
+
+  .minimal-footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: white;
+    text-decoration: none;
+  }
+
+  .footer-copyright {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+</style>

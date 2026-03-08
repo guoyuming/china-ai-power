@@ -1,0 +1,87 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import ArticleCard from './ArticleCard.astro';
+
+interface Props {
+  currentPost: CollectionEntry<'blog'>;
+}
+
+const { currentPost } = Astro.props;
+
+const allPosts = (await getCollection('blog')).filter(
+  p => !p.data.draft && p.id !== currentPost.id
+);
+
+// Score posts by tag overlap, fall back to recency
+const scored = allPosts
+  .map(post => {
+    const overlap = post.data.tags.filter(t => currentPost.data.tags.includes(t)).length;
+    return { post, score: overlap };
+  })
+  .sort(
+    (a, b) =>
+      b.score - a.score ||
+      b.post.data.pubDate.valueOf() - a.post.data.pubDate.valueOf()
+  );
+
+const related = scored.slice(0, 3).map(s => s.post);
+---
+
+{related.length > 0 && (
+  <section class="related-posts" data-pagefind-ignore>
+    <div class="related-header">
+      <span class="related-label">Related Articles</span>
+    </div>
+    <div class="related-grid">
+      {related.map(post => (
+        <ArticleCard post={post} size="small" />
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .related-posts {
+    border-top: 1px solid var(--color-gray-200);
+    padding-top: 48px;
+    margin-top: 64px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 80px;
+  }
+
+  .related-header {
+    margin-bottom: 32px;
+  }
+
+  .related-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    display: block;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  @media (max-width: 767px) {
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .related-posts {
+      margin-top: 40px;
+      padding-top: 32px;
+    }
+  }
+</style>

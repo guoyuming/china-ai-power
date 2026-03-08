@@ -1,0 +1,202 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+const showToc = tocHeadings.length >= 3;
+---
+
+{showToc && (
+  <div class="toc-wrapper">
+    <!-- Mobile: collapsible <details>, hidden at ≥1200px -->
+    <details class="toc-mobile">
+      <summary class="toc-summary">
+        <span>Table of Contents</span>
+        <span class="toc-chevron" aria-hidden="true">&#9660;</span>
+      </summary>
+      <nav aria-label="Table of contents">
+        <ol class="toc-list">
+          {tocHeadings.map(h => (
+            <li class={h.depth === 3 ? 'toc-item toc-item--sub' : 'toc-item'}>
+              <a href={`#${h.slug}`} class="toc-link">{h.text}</a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </details>
+
+    <!-- Desktop: sticky sidebar, shown at ≥1200px -->
+    <div class="toc-desktop" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+      <nav>
+        <ol class="toc-list">
+          {tocHeadings.map(h => (
+            <li class={h.depth === 3 ? 'toc-item toc-item--sub' : 'toc-item'}>
+              <a
+                href={`#${h.slug}`}
+                class="toc-link"
+                data-toc-link={h.slug}
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </div>
+  </div>
+)}
+
+<style>
+  .toc-wrapper {
+    margin-bottom: 32px;
+  }
+
+  /* ── Mobile collapsible ── */
+  .toc-mobile {
+    border: 1px solid var(--color-gray-200);
+    padding: 0;
+  }
+
+  .toc-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .toc-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .toc-chevron {
+    font-size: 10px;
+    transition: transform 0.2s ease;
+    color: var(--text-secondary);
+  }
+
+  details[open] .toc-chevron {
+    transform: rotate(180deg);
+  }
+
+  .toc-mobile .toc-list {
+    padding: 8px 16px 16px;
+    list-style: none;
+    margin: 0;
+  }
+
+  /* ── Shared list styles ── */
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-item {
+    margin-bottom: 8px;
+  }
+
+  .toc-item--sub {
+    padding-left: 16px;
+  }
+
+  .toc-link {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+    transition: color 0.15s ease;
+  }
+
+  .toc-link:hover,
+  .toc-link.toc-link--active {
+    color: var(--text-primary);
+  }
+
+  .toc-link.toc-link--active {
+    font-weight: 600;
+  }
+
+  /* ── Desktop sidebar (hidden by default) ── */
+  .toc-desktop {
+    display: none;
+  }
+
+  .toc-title {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  /* At ≥1200px, swap: show desktop sidebar, hide mobile details */
+  @media (min-width: 1200px) {
+    .toc-mobile {
+      display: none;
+    }
+
+    .toc-desktop {
+      display: block;
+    }
+
+    .toc-wrapper {
+      margin-bottom: 0;
+    }
+  }
+</style>
+
+<script>
+  // IntersectionObserver to highlight the active TOC section
+  const tocLinks = document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]');
+
+  if (tocLinks.length > 0) {
+    const setActive = (id: string) => {
+      tocLinks.forEach(link => {
+        link.classList.toggle('toc-link--active', link.dataset.tocLink === id);
+      });
+    };
+
+    // Observe article headings
+    const observer = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+            break;
+          }
+        }
+      },
+      { rootMargin: '0px 0px -65% 0px', threshold: 0 }
+    );
+
+    tocLinks.forEach(link => {
+      const id = link.dataset.tocLink;
+      if (id) {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      }
+    });
+  }
+</script>

@@ -1,0 +1,18 @@
+---
+import ArticleCard from '../../components/ArticleCard.astro';
+import BlogList from '../../layouts/BlogList.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BlogList
+  title="LATEST POSTS"
+  description="Browse all the latest articles from NOICELAND covering technology, design, culture, and travel."
+>
+  {allPosts.map(post => (
+    <ArticleCard post={post} />
+  ))}
+</BlogList>

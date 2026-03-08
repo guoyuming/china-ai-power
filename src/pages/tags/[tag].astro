@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import MinimalFooter from '../../components/MinimalFooter.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = (await getCollection('blog')).filter(p => !p.data.draft);
+
+  const tagSet = new Set<string>();
+  allPosts.forEach(p =>
+    p.data.tags.forEach(t => tagSet.add(t.toLowerCase().replace(/\s+/g, '-')))
+  );
+
+  return [...tagSet].map(tagSlug => {
+    const filtered = allPosts.filter(p =>
+      p.data.tags.some(t => t.toLowerCase().replace(/\s+/g, '-') === tagSlug)
+    );
+    const displayName = filtered[0]?.data.tags.find(
+      t => t.toLowerCase().replace(/\s+/g, '-') === tagSlug
+    ) ?? tagSlug;
+
+    return {
+      params: { tag: tagSlug },
+      props: {
+        posts: filtered.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+        tagName: displayName,
+      },
+    };
+  });
+}
+
+const { posts, tagName } = Astro.props;
+---
+
+<BaseLayout
+  title={`${tagName} — NOICELAND`}
+  description={`Articles about ${tagName} on NOICELAND.`}
+>
+  <div class="container">
+    <section class="page-header">
+      <span class="tag-overline">Tag</span>
+      <h1 class="page-title">{tagName}</h1>
+      <p class="post-count">{posts.length} {posts.length === 1 ? 'article' : 'articles'}</p>
+    </section>
+
+    <div class="posts-grid">
+      {posts.map(post => (
+        <ArticleCard post={post} />
+      ))}
+    </div>
+  </div>
+
+  <MinimalFooter slot="footer" />
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-top: 64px;
+    margin-bottom: 48px;
+  }
+
+  .tag-overline {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .post-count {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 80px;
+  }
+
+  @media (max-width: 991px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .page-title {
+      font-size: 28px;
+    }
+
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .page-header {
+      margin-top: 40px;
+      margin-bottom: 32px;
+    }
+  }
+</style>

@@ -1,0 +1,227 @@
+---
+const footerLinks = [
+  {
+    title: 'Explore',
+    links: [
+      { label: 'Technology', href: '/tags/technology' },
+      { label: 'Design', href: '/tags/design' },
+      { label: 'Culture', href: '/tags/culture' },
+      { label: 'Travel', href: '/tags/travel' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Careers', href: '#' },
+      { label: 'Press', href: '#' },
+      { label: 'Contact', href: '#' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Privacy', href: '#' },
+      { label: 'Terms', href: '#' },
+      { label: 'Cookies', href: '#' },
+      { label: 'Sitemap', href: '/sitemap-index.xml' },
+    ],
+  },
+  {
+    title: 'Follow',
+    links: [
+      { label: 'Twitter', href: '#' },
+      { label: 'Instagram', href: '#' },
+      { label: 'LinkedIn', href: '#' },
+      { label: 'RSS Feed', href: '/rss.xml' },
+    ],
+  },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="full-footer" data-pagefind-ignore>
+  <div class="container">
+    <div class="footer-top">
+      <a href="/" class="footer-logo">NOICELAND</a>
+      <span class="footer-copyright">&copy; {currentYear} NOICELAND</span>
+    </div>
+
+    <hr class="footer-divider" />
+
+    <div class="footer-bottom">
+      {footerLinks.map(col => (
+        <div class="footer-col">
+          <h4 class="footer-col-title">{col.title}</h4>
+          <ul>
+            {col.links.map(link => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div class="footer-col footer-newsletter">
+        <p class="footer-col-title">Newsletter</p>
+        <p class="newsletter-label">Subscribe to our newsletter</p>
+        <div class="newsletter-form">
+          <input
+            type="email"
+            placeholder="your@email.com"
+            class="newsletter-input"
+            aria-label="Email address"
+          />
+          <button type="button" class="newsletter-btn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .full-footer {
+    background-color: #111111;
+    color: white;
+    padding: 64px 0 32px;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .footer-logo {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: white;
+    text-decoration: none;
+  }
+
+  .footer-copyright {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--color-gray-600);
+  }
+
+  .footer-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 32px 0;
+  }
+
+  .footer-bottom {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+
+  .footer-col-title {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-col ul li {
+    margin-bottom: 8px;
+  }
+
+  .footer-col ul li a {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-col ul li a:hover {
+    color: white;
+  }
+
+  .newsletter-label {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: white;
+    margin-bottom: 12px;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    background: white;
+    color: var(--text-primary);
+    border: none;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: var(--font-sans);
+    outline: none;
+    min-width: 0;
+  }
+
+  .newsletter-input::placeholder {
+    color: var(--color-gray-500);
+  }
+
+  .newsletter-input:focus {
+    outline: 2px solid var(--border-focus);
+  }
+
+  .newsletter-btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+  }
+
+  .newsletter-btn:hover {
+    opacity: 0.85;
+  }
+
+  @media (max-width: 991px) {
+    .footer-bottom {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer-newsletter {
+      grid-column: 1 / -1;
+    }
+
+    .newsletter-form {
+      max-width: 400px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .footer-bottom {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-newsletter {
+      grid-column: auto;
+    }
+  }
+</style>

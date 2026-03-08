@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MinimalFooter from '../components/MinimalFooter.astro';
+---
+
+<BaseLayout
+  title="404 — Page Not Found"
+  description="The page you are looking for could not be found."
+>
+  <div class="container">
+    <div class="not-found">
+      <span class="not-found-code">404</span>
+      <h1 class="not-found-title">Page not found</h1>
+      <p class="not-found-text">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <a href="/" class="not-found-link">&larr; Back to homepage</a>
+    </div>
+  </div>
+
+  <MinimalFooter slot="footer" />
+</BaseLayout>
+
+<style>
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 60vh;
+    gap: 16px;
+  }
+
+  .not-found-code {
+    font-family: var(--font-serif);
+    font-size: 96px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-gray-200);
+    display: block;
+  }
+
+  .not-found-title {
+    font-family: var(--font-serif);
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--text-primary);
+  }
+
+  .not-found-text {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 400px;
+  }
+
+  .not-found-link {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    margin-top: 8px;
+    transition: opacity 0.2s ease;
+  }
+
+  .not-found-link:hover {
+    opacity: 0.7;
+  }
+</style>

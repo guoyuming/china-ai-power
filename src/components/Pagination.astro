@@ -1,0 +1,76 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  basePath: string;
+}
+
+const { currentPage, totalPages, basePath } = Astro.props;
+
+function pageUrl(page: number) {
+  if (page === 1) return basePath;
+  return `${basePath}/${page}`;
+}
+
+const prevPage = currentPage > 1 ? pageUrl(currentPage - 1) : null;
+const nextPage = currentPage < totalPages ? pageUrl(currentPage + 1) : null;
+---
+
+{totalPages > 1 && (
+  <nav class="pagination" aria-label="Page navigation">
+    {prevPage ? (
+      <a href={prevPage} class="pagination-btn">&larr; Previous</a>
+    ) : (
+      <span class="pagination-btn pagination-btn--disabled">&larr; Previous</span>
+    )}
+
+    <span class="pagination-info">
+      Page {currentPage} of {totalPages}
+    </span>
+
+    {nextPage ? (
+      <a href={nextPage} class="pagination-btn">Next &rarr;</a>
+    ) : (
+      <span class="pagination-btn pagination-btn--disabled">Next &rarr;</span>
+    )}
+  </nav>
+)}
+
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-top: 48px;
+    margin-bottom: 64px;
+  }
+
+  .pagination-btn {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 8px 20px;
+    border: 1px solid var(--color-gray-300);
+    transition: all 0.2s ease;
+    display: inline-block;
+  }
+
+  .pagination-btn:not(.pagination-btn--disabled):hover {
+    background: black;
+    color: white;
+    border-color: black;
+  }
+
+  .pagination-btn--disabled {
+    color: var(--color-gray-500);
+    cursor: default;
+  }
+
+  .pagination-info {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+</style>

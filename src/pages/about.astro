@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MinimalFooter from '../components/MinimalFooter.astro';
+---
+
+<BaseLayout
+  title="About — NOICELAND"
+  description="About NOICELAND, an independent editorial publication covering technology, design, culture, and travel."
+>
+  <div class="container">
+    <div class="about-wrapper">
+      <div class="about-header">
+        <h1 class="about-title">About NOICELAND</h1>
+      </div>
+      <div class="about-content prose">
+        <p>
+          NOICELAND is an independent editorial publication founded on the belief that
+          great writing deserves great design. We cover the ideas, people, and places
+          shaping our world — from the frontier of technology to the quiet corners of
+          culture.
+        </p>
+        <p>
+          Our editorial team brings together writers, designers, and thinkers who care
+          deeply about craft. Every piece is written to inform, to provoke, and — above
+          all — to be read.
+        </p>
+        <h2>What We Cover</h2>
+        <ul>
+          <li><strong>Technology</strong> — The systems and tools remaking society</li>
+          <li><strong>Design</strong> — The aesthetics and intentions behind what we build</li>
+          <li><strong>Culture</strong> — Art, media, and the stories we tell ourselves</li>
+          <li><strong>Travel</strong> — The places that change the way we see the world</li>
+        </ul>
+        <h2>Our Philosophy</h2>
+        <p>
+          We believe in depth over speed, signal over noise, and permanence over virality.
+          We publish when we have something worth saying, and we stand behind everything
+          we put our name on.
+        </p>
+        <h2>Get in Touch</h2>
+        <p>
+          We welcome pitches, letters, and good conversation. Reach us at
+          <a href="mailto:hello@noiceland.com">hello@noiceland.com</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <MinimalFooter slot="footer" />
+</BaseLayout>
+
+<style>
+  .about-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 64px 0 80px;
+  }
+
+  .about-header {
+    margin-bottom: 40px;
+  }
+
+  .about-title {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 767px) {
+    .about-title {
+      font-size: 28px;
+    }
+
+    .about-wrapper {
+      padding: 40px 0 60px;
+    }
+  }
+</style>

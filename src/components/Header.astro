@@ -1,0 +1,183 @@
+---
+import Search from './Search.astro';
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/latest', label: 'Latest' },
+  { href: '/about', label: 'About' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header" data-pagefind-ignore>
+  <div class="container header-inner">
+    <a href="/" class="logo">NOICELAND</a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class={`nav-link${currentPath === item.href ? ' nav-link--active' : ''}`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <button
+        class="search-trigger"
+        id="search-trigger"
+        aria-label="Open search (Ctrl+K)"
+        title="Search (Ctrl+K)"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        &#9776;
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    {navItems.map(item => (
+      <a href={item.href} class="mobile-nav-link">{item.label}</a>
+    ))}
+  </div>
+</header>
+
+<Search />
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-gray-200);
+    position: relative;
+  }
+
+  .header-inner {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .desktop-nav {
+    display: flex;
+    gap: 24px;
+  }
+
+  .nav-link {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+  }
+
+  .nav-link:hover {
+    opacity: 0.7;
+  }
+
+  .nav-link--active {
+    text-decoration: underline;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .search-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    padding: 4px;
+    transition: opacity var(--transition-fast);
+  }
+
+  .search-trigger:hover {
+    opacity: 0.7;
+  }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--text-primary);
+    padding: 4px;
+    line-height: 1;
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: white;
+    border-top: 1px solid var(--color-gray-200);
+    padding: 0 24px;
+  }
+
+  .mobile-menu.is-open {
+    display: flex;
+  }
+
+  .mobile-nav-link {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-gray-100);
+    transition: opacity var(--transition-fast);
+  }
+
+  .mobile-nav-link:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-nav-link:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 767px) {
+    .desktop-nav {
+      display: none;
+    }
+
+    .hamburger {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('is-open');
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    mobileMenu?.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  });
+</script>
