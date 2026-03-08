@@ -2,13 +2,10 @@
 title: "The Future of AI in Everyday Computing"
 description: "How artificial intelligence is quietly reshaping the tools we use every day, from search to creative work."
 pubDate: 2026-02-15
-author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/ai-computing/1200/630"
 tags: ["Technology", "AI", "Future"]
-category: "Technology"
 draft: false
 featured: true
-excerpt: "Artificial intelligence has moved from the research lab into everyday life with remarkable speed. What does that mean for how we work, create, and think?"
 ---
 
 Artificial intelligence has moved from the research lab into everyday life with remarkable speed. Just a few years ago, the idea of having a real-time conversation with a machine that could reason, write, and synthesize information felt like science fiction. Today it is a daily habit for millions.

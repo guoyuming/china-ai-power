@@ -2,13 +2,10 @@
 title: "A Week in Iceland: Land of Fire and Permanent Light"
 description: "Seven days driving the ring road in midsummer, where the sun never quite sets and the landscape refuses to behave like anywhere else on earth."
 pubDate: 2025-11-22
-author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/iceland/1200/630"
 tags: ["Travel", "Iceland", "Adventure"]
-category: "Travel"
 draft: false
 featured: false
-excerpt: "Iceland in June operates on a different logic. The sun describes a low arc across the horizon at midnight and the land glows in a way that makes everything look slightly unreal."
 ---
 
 Iceland in June operates on a different logic. The sun describes a low arc across the horizon at midnight and the land glows amber in a way that makes everything look slightly unreal — a landscape rendered in the palette of a dusk that never fully arrives.

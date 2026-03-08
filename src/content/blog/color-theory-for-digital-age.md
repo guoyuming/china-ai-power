@@ -2,13 +2,10 @@
 title: "Color Theory for the Digital Age"
 description: "Understanding how color functions differently on screens than in print, and how to make intentional choices that survive the journey across devices."
 pubDate: 2025-10-28
-author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/color-theory/1200/630"
 tags: ["Design", "Color", "Visual"]
-category: "Design"
 draft: false
 featured: false
-excerpt: "Color on screens is light. Color on paper is pigment. This distinction changes almost everything about how designers should think about color."
 ---
 
 Color on screens is light. Color on paper is pigment. This distinction, which sounds merely technical, changes almost everything about how designers should think about color in digital contexts.

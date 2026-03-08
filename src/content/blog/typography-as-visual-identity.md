@@ -2,13 +2,10 @@
 title: "Typography as the Foundation of Visual Identity"
 description: "Before color, before imagery, before layout — typography is the first decision that shapes how a brand feels."
 pubDate: 2025-12-18
-author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/typography/1200/630"
 tags: ["Design", "Typography", "Branding"]
-category: "Design"
 draft: false
 featured: false
-excerpt: "A typeface is not decoration. It is the voice of everything written under a brand's name."
 ---
 
 A typeface is not decoration. It is the voice of everything written under a brand's name. Before a single word is read, the letterforms have already communicated something about formality, warmth, authority, and ambition.

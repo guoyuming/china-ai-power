@@ -4,7 +4,6 @@ interface ArticleSeoData {
   pubDate: Date;
   updatedDate?: Date;
   heroImage?: string;
-  author?: string;
 }
 
 export function generateArticleJsonLd(
@@ -26,10 +25,6 @@ export function generateArticleJsonLd(
     ...(image && { image }),
     datePublished: post.pubDate.toISOString(),
     dateModified: (post.updatedDate ?? post.pubDate).toISOString(),
-    author: {
-      '@type': 'Person',
-      name: post.author ?? 'ChinaAI',
-    },
     publisher: {
       '@type': 'Organization',
       name: 'ChinaAI',

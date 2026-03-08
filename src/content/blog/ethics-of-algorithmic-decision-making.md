@@ -2,13 +2,10 @@
 title: "The Ethics of Algorithmic Decision Making"
 description: "When algorithms decide who gets a loan, who sees a job posting, or who is released on bail, the stakes of system design become impossible to ignore."
 pubDate: 2025-11-10
-author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/algo-ethics/1200/630"
 tags: ["Technology", "Ethics", "AI"]
-category: "Technology"
 draft: false
 featured: false
-excerpt: "Algorithms don't have values. But they encode the values of whoever built them, often without the builders fully understanding the implications."
 ---
 
 Algorithms don't have values. But they encode the values of whoever built them, and they reflect the values embedded in the data they were trained on. Often without the builders fully understanding what has been encoded, and almost never with the people affected by the decisions having any say.

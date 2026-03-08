@@ -2,13 +2,10 @@
 title: "Open Source and the Future of Software Development"
 description: "How the open source movement has quietly become the backbone of modern software, and what that means for how we build things."
 pubDate: 2026-01-12
-author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/open-source/1200/630"
 tags: ["Technology", "Open Source", "Software"]
-category: "Technology"
 draft: false
 featured: false
-excerpt: "Almost every piece of software you use today runs on open source foundations. Understanding why reveals something important about how valuable things get built."
 ---
 
 Almost every piece of software you use today runs on open source foundations. The browser displaying this page. The operating system on the server that delivered it. The tools used to build both. The databases storing the data. The networking protocols carrying the packets.

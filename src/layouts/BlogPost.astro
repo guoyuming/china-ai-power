@@ -18,8 +18,6 @@ interface Props {
   pubDate: Date;
   updatedDate?: Date;
   heroImage?: string;
-  author?: string;
-  category?: string;
   canonicalUrl?: string;
   readingTime?: string;
   headings?: Heading[];
@@ -32,22 +30,19 @@ const {
   pubDate,
   updatedDate,
   heroImage,
-  author,
-  category,
   canonicalUrl,
   readingTime,
   headings = [],
   pageUrl,
 } = Astro.props;
 
-const authorName = author ?? 'ChinaAI';
 const formattedDate = formatDate(pubDate);
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://china-ai-power.pages.dev';
 const resolvedPageUrl = pageUrl ?? canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).toString();
 
 const jsonLd = generateArticleJsonLd(
-  { title, description, pubDate, updatedDate, heroImage, author },
+  { title, description, pubDate, updatedDate, heroImage },
   siteUrl,
   resolvedPageUrl
 );
@@ -64,14 +59,10 @@ const jsonLd = generateArticleJsonLd(
     <!-- Article Header -->
     <div class="article-header-outer">
       <div class="article-header">
-        {category && <span class="category-label">{category}</span>}
         <h1 class="article-title">{title}</h1>
-        <div class="author-row">
-          <div class="author-info">
-            <span class="author-name">BY {authorName}</span>
-            <span class="article-date">{formattedDate}</span>
-            {readingTime && <span class="reading-time">{readingTime}</span>}
-          </div>
+        <div class="article-meta">
+          <span class="article-date">{formattedDate}</span>
+          {readingTime && <span class="reading-time">{readingTime}</span>}
         </div>
         <ShareButtons title={title} url={resolvedPageUrl} />
       </div>
@@ -170,15 +161,6 @@ const jsonLd = generateArticleJsonLd(
     gap: 16px;
   }
 
-  .category-label {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-secondary);
-  }
-
   .article-title {
     font-family: var(--font-serif);
     font-size: 48px;
@@ -187,29 +169,12 @@ const jsonLd = generateArticleJsonLd(
     color: var(--text-primary);
   }
 
-  .author-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .author-info {
+  .article-meta {
     display: flex;
     align-items: center;
     gap: 8px;
-    flex-wrap: wrap;
   }
 
-  .author-name {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--text-secondary);
-  }
-
-  .article-date::before,
   .reading-time::before {
     content: '·';
     margin-right: 8px;

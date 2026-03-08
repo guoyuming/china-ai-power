@@ -2,13 +2,10 @@
 title: "Hidden Gems of Southeast Asia's Interior"
 description: "Beyond the crowded coastlines and famous temples, the interior of Southeast Asia holds landscapes and communities that most travelers never see."
 pubDate: 2026-01-20
-author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/southeast-asia/1200/630"
 tags: ["Travel", "Asia", "Adventure"]
-category: "Travel"
 draft: false
 featured: false
-excerpt: "The real Southeast Asia is not on the postcards. It is in the hill towns, the river valleys, and the communities that tourism has not yet reached."
 ---
 
 The real Southeast Asia is not on the postcards. It is in the hill towns that sit above the haze, in the river valleys where the road narrows to a track, in the communities that tourism infrastructure has not yet reached — and may never.

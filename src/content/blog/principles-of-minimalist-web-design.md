@@ -2,13 +2,10 @@
 title: "Principles of Minimalist Web Design"
 description: "Why less continues to be more in an era of overwhelming digital complexity, and how restraint produces better outcomes."
 pubDate: 2026-02-10
-author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/minimalist-design/1200/630"
 tags: ["Design", "Minimalism", "Web"]
-category: "Design"
 draft: false
 featured: true
-excerpt: "In a world of relentless visual noise, the designers who do the most with the least are the ones worth watching."
 ---
 
 In a world of relentless visual noise — animations that trigger on scroll, notifications demanding attention, interfaces that compete for every pixel — the designers who do the most with the least are the ones worth watching.

@@ -2,13 +2,10 @@
 title: "The Renaissance of Independent Journalism"
 description: "As traditional media continues to contract, a new generation of independent writers and publications is finding sustainable audiences."
 pubDate: 2025-12-05
-author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/journalism/1200/630"
 tags: ["Culture", "Journalism", "Media"]
-category: "Culture"
 draft: false
 featured: false
-excerpt: "The newspaper is dying. Long live the newsletter. But what is actually being gained and lost in this transition?"
 ---
 
 The newspaper is dying. The magazine is struggling. The local television news operation is a skeleton of what it was. The loss is real, and its effects on civic life are documented and serious.

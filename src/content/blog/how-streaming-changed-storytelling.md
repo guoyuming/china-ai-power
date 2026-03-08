@@ -2,13 +2,10 @@
 title: "How Streaming Changed Our Relationship with Stories"
 description: "The shift from weekly television to on-demand streaming has done more than change viewing habits — it has changed how stories are told."
 pubDate: 2026-01-28
-author: "ChinaAI"
 heroImage: "https://picsum.photos/seed/streaming-story/1200/630"
 tags: ["Culture", "Streaming", "Entertainment"]
-category: "Culture"
 draft: false
 featured: false
-excerpt: "Binge-watching is not just a new consumption habit — it is a new relationship with narrative time."
 ---
 
 Binge-watching is not just a new consumption habit. It is a new relationship with narrative time. When an entire season of a television show is available at once, the experience of watching it changes fundamentally — and so does the experience of making it.

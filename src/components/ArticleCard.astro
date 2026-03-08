@@ -8,8 +8,7 @@ interface Props {
 }
 
 const { post, size = 'default' } = Astro.props;
-const { title, author, heroImage, category } = post.data;
-const authorName = author ?? 'ChinaAI';
+const { title, heroImage } = post.data;
 const href = `/blog/${post.id}`;
 const timeToRead = readingTime(post.body ?? '');
 ---
@@ -30,11 +29,8 @@ const timeToRead = readingTime(post.body ?? '');
       )}
     </div>
     <div class="card-content">
-      {category && <span class="card-category">{category}</span>}
       <h3 class="card-title">{title}</h3>
       <div class="card-meta">
-        <span class="card-author">BY {authorName}</span>
-        <span class="card-meta-sep">&middot;</span>
         <span class="card-reading-time">{timeToRead}</span>
       </div>
     </div>
@@ -88,15 +84,6 @@ const timeToRead = readingTime(post.body ?? '');
     gap: 6px;
   }
 
-  .card-category {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-secondary);
-  }
-
   .card-title {
     font-family: var(--font-serif);
     font-size: 20px;
@@ -125,17 +112,11 @@ const timeToRead = readingTime(post.body ?? '');
     gap: 6px;
   }
 
-  .card-author,
   .card-reading-time {
     font-family: var(--font-sans);
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: var(--text-secondary);
-  }
-
-  .card-meta-sep {
-    font-size: 11px;
-    color: var(--color-gray-400);
   }
 </style>

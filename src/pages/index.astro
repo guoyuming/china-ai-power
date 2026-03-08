@@ -38,16 +38,12 @@ const bottomPosts = remainingPosts.slice(6, 10);
       )}
     </div>
     <div class="hero-content">
-      {heroPost.data.category && (
-        <span class="hero-category">{heroPost.data.category}</span>
-      )}
       <h1 class="hero-title">
         <a href={`/blog/${heroPost.id}`}>{heroPost.data.title}</a>
       </h1>
       <p class="hero-excerpt">
-        {heroPost.data.excerpt ?? heroPost.data.description}
+        {heroPost.data.description}
       </p>
-      <span class="hero-author">BY {heroPost.data.author ?? 'ChinaAI'}</span>
     </div>
   </section>
 
@@ -143,17 +139,6 @@ const bottomPosts = remainingPosts.slice(6, 10);
     padding-left: 48px;
   }
 
-  .hero-category {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-secondary);
-    margin-bottom: 8px;
-    display: block;
-  }
-
   .hero-title {
     font-family: var(--font-serif);
     font-size: 48px;
@@ -179,16 +164,6 @@ const bottomPosts = remainingPosts.slice(6, 10);
     color: var(--text-secondary);
     line-height: 1.6;
     margin-top: 0;
-  }
-
-  .hero-author {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--text-secondary);
-    margin-top: 24px;
   }
 
   /* Featured Grid */
