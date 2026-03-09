@@ -133,3 +133,80 @@ Optional: updatedDate, heroImage, featured
 - Push to main → Cloudflare Pages auto-builds
 - Build command: `npm run build`
 - Build output: `dist/`
+
+---
+
+## Content Processing Workflow
+
+### Overview
+Drop a Chinese-language source file into `_inbox/raw/`, tell Claude `"process inbox"`, and get a translated English article with a generated hero image — ready to commit and deploy.
+
+### One-time setup
+1. Get your API key from newapi.pro
+2. Create `.env` at the project root: `API_KEY=your-key-here`
+
+### Inbox convention
+Save Chinese source as `_inbox/raw/my-article.md` with this frontmatter:
+```yaml
+---
+sourceUrl: "https://original.com/article"
+sourceDate: 2026-03-10
+featured: true    # optional — makes it the homepage hero
+tags: ["policy"]  # optional — Claude can suggest during processing
+---
+
+[Chinese article body]
+```
+
+### "process inbox" — what Claude does
+
+| Step | Action |
+|------|--------|
+| 1 | Runs `baoyu-translate` (refined, zh→en, formal) → `translation.md` |
+| 2 | Waits for your approval; say "refine" for another polish pass |
+| 3 | Runs `baoyu-cover-image` on `translation.md` → `cover-image/{slug}/prompts/cover.md` |
+| 4 | Waits for you to confirm the 6 image dimensions |
+| 5 | Runs `bun scripts/generate-cover.ts cover-image/{slug}/prompts/cover.md` → `cover.png` |
+| 6 | Writes `src/content/blog/{slug}.md` with full frontmatter |
+| 7 | Copies `cover-image/{slug}/cover.png` → `public/images/{slug}.png` |
+| 8 | Moves raw source → `_inbox/processed/{slug}-zh.md` |
+
+### Frontmatter template for assembled article
+```yaml
+---
+title: "English Title Here"
+description: "One-sentence summary for card/SEO."
+pubDate: 2026-03-10
+tags: ["policy", "llm"]
+draft: false
+featured: false          # true = homepage hero
+heroImage: "/images/{slug}.png"
+---
+```
+
+### File path mapping
+
+| Asset | Path |
+|-------|------|
+| Published article | `src/content/blog/{slug}.md` |
+| Hero image | `public/images/{slug}.png` |
+| Raw source (archive) | `_inbox/processed/{slug}-zh.md` |
+| Cover working files | `cover-image/{slug}/` (gitignored) |
+
+Slug: lowercase kebab-case from the English title, max 5 words.
+
+### generate-cover.ts
+```
+Input:  cover-image/{slug}/prompts/cover.md   ← baoyu-cover-image writes this
+        .env                                   ← API_KEY
+Output: cover-image/{slug}/cover.png
+```
+Run: `bun scripts/generate-cover.ts cover-image/{slug}/prompts/cover.md`
+
+### After processing
+```bash
+npm run dev          # preview locally at localhost:4321
+git add src/content/blog/{slug}.md public/images/{slug}.png
+git commit -m "publish: {slug}"
+git push             # Cloudflare Pages auto-deploys
+```

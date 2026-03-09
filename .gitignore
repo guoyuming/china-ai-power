@@ -22,6 +22,10 @@ Thumbs.db
 # Astro
 .astro/
 
+# Content workflow — working files (never commit)
+cover-image/
+_inbox/processed/
+
 # editor
 .vscode/
 .idea/
