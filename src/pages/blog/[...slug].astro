@@ -29,6 +29,7 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
   readingTime={timeToRead}
   headings={headings}
   pageUrl={pageUrl}
+  tags={post.data.tags}
 >
   <Content />
   <RelatedPosts slot="related" currentPost={post} />

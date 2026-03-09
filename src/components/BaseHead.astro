@@ -5,9 +5,11 @@ interface Props {
   image?: string;
   canonicalUrl?: string;
   jsonLd?: string;
+  type?: 'website' | 'article';
+  noIndex?: boolean;
 }
 
-const { title, description, image = '/og-default.jpg', canonicalUrl, jsonLd } = Astro.props;
+const { title, description, image = '/og-default.jpg', canonicalUrl, jsonLd, type = 'website', noIndex } = Astro.props;
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).toString();
 const ogImage = image.startsWith('http') ? image : new URL(image, Astro.site).toString();
 ---
@@ -17,6 +19,7 @@ const ogImage = image.startsWith('http') ? image : new URL(image, Astro.site).to
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
+{noIndex && <meta name="robots" content="noindex, nofollow" />}
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,7 +34,7 @@ const ogImage = image.startsWith('http') ? image : new URL(image, Astro.site).to
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
 <meta property="og:url" content={canonical} />
-<meta property="og:type" content="website" />
+<meta property="og:type" content={type} />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -41,16 +44,9 @@ const ogImage = image.startsWith('http') ? image : new URL(image, Astro.site).to
 
 <!-- Sitemap & RSS -->
 <link rel="sitemap" href="/sitemap-index.xml" />
-<link rel="alternate" type="application/rss+xml" title="ChinaAI RSS Feed" href="/rss.xml" />
+<link rel="alternate" type="application/rss+xml" title="China AI Digest RSS Feed" href="/rss.xml" />
 
 <!-- JSON-LD Structured Data -->
 {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
 
-<!-- Cloudflare Web Analytics — replace TOKEN with your beacon token from Cloudflare Pages → Analytics -->
-{import.meta.env.PROD && (
-  <script
-    defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "REPLACE_WITH_YOUR_CF_ANALYTICS_TOKEN"}'
-  />
-)}
+<!-- Cloudflare Analytics: add beacon script here once CF token is configured -->

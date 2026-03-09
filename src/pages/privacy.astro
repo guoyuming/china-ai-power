@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MinimalFooter from '../components/MinimalFooter.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy — China AI Digest"
+  description="Privacy policy for China AI Digest — what data we collect, how we use it, and how to contact us."
+>
+  <div class="container">
+    <div class="privacy-wrapper">
+      <div class="privacy-header">
+        <h1 class="privacy-title">Privacy Policy</h1>
+        <p class="privacy-date">Last updated: March 2026</p>
+      </div>
+      <div class="privacy-content prose">
+        <p>
+          China AI Digest ("we", "us", or "our") is committed to protecting your
+          privacy. This policy explains what information we collect, how we use it,
+          and your choices.
+        </p>
+
+        <h2>Information We Collect</h2>
+        <p>
+          We collect minimal information to operate the site. Specifically:
+        </p>
+        <ul>
+          <li>
+            <strong>Email address</strong> — if you subscribe to our newsletter,
+            we collect your email address to send you the digest. We do not share
+            or sell subscriber email addresses.
+          </li>
+          <li>
+            <strong>Analytics data</strong> — we use web analytics to understand
+            aggregate traffic patterns (pages visited, referral sources, approximate
+            geographic region). This data is not personally identifiable and is used
+            only to improve the publication.
+          </li>
+          <li>
+            <strong>Server logs</strong> — like all websites, our hosting provider
+            may log IP addresses and request metadata for security and performance
+            purposes. These logs are not used for marketing.
+          </li>
+        </ul>
+
+        <h2>Cookies</h2>
+        <p>
+          China AI Digest does not use tracking cookies. Analytics data is collected
+          without storing persistent identifiers in your browser. Google Fonts are
+          loaded from Google's servers; see Google's privacy policy for how they
+          handle font requests.
+        </p>
+
+        <h2>Newsletter</h2>
+        <p>
+          If you subscribe to our email newsletter, your email address is stored
+          by our email service provider and used solely to deliver the digest.
+          You can unsubscribe at any time by clicking the unsubscribe link in any
+          email we send.
+        </p>
+
+        <h2>Third-Party Services</h2>
+        <p>
+          This site is hosted on Cloudflare Pages. Cloudflare may collect certain
+          technical data as part of providing hosting and security services. See
+          the <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer" target="_blank">Cloudflare Privacy Policy</a> for details.
+        </p>
+
+        <h2>Your Rights</h2>
+        <p>
+          You may request access to, correction of, or deletion of any personal
+          data we hold about you (such as your newsletter subscription email).
+          Contact us at the address below and we will respond within 30 days.
+        </p>
+
+        <h2>Changes to This Policy</h2>
+        <p>
+          We may update this policy from time to time. The date at the top of this
+          page reflects when it was last revised. Continued use of the site after
+          changes constitutes acceptance of the revised policy.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Privacy inquiries: <a href="mailto:hello@chinaaidigest.com">hello@chinaaidigest.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <MinimalFooter slot="footer" />
+</BaseLayout>
+
+<style>
+  .privacy-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 64px 0 80px;
+  }
+
+  .privacy-header {
+    margin-bottom: 40px;
+  }
+
+  .privacy-title {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .privacy-date {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 767px) {
+    .privacy-title {
+      font-size: 28px;
+    }
+
+    .privacy-wrapper {
+      padding: 40px 0 60px;
+    }
+  }
+</style>

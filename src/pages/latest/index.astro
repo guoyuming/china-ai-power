@@ -10,7 +10,7 @@ const allPosts = (await getCollection('blog'))
 
 <BlogList
   title="LATEST POSTS"
-  description="Browse all the latest articles from ChinaAI covering technology, design, culture, and travel."
+  description="Browse all the latest articles from China AI Digest — independent coverage of China's AI policy, research, and companies."
 >
   {allPosts.map(post => (
     <ArticleCard post={post} />

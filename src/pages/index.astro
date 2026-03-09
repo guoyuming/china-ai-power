@@ -4,6 +4,7 @@ import ArticleCard from '../components/ArticleCard.astro';
 import GhostButton from '../components/GhostButton.astro';
 import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
+import { generateSiteJsonLd } from '../utils/seo';
 
 const allPosts = (await getCollection('blog'))
   .filter(post => !post.data.draft)
@@ -13,14 +14,18 @@ const heroPost = allPosts.length > 0 ? (allPosts.find(p => p.data.featured) ?? a
 const remainingPosts = heroPost ? allPosts.filter(p => p.id !== heroPost.id) : [];
 
 const featuredPosts = remainingPosts.slice(0, 6);
-const latestPosts = remainingPosts.slice(0, 8);
+const latestPosts = remainingPosts.slice(6, 14);
 const bottomPosts = remainingPosts.slice(6, 10);
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://chinaaidigest.com';
+const jsonLd = generateSiteJsonLd(siteUrl);
 ---
 
 <BaseLayout
   title="China AI Digest — Your weekly briefing on China's AI industry"
   description="China AI Digest covers AI policy, research, and companies shaping China's artificial intelligence landscape."
   preloadImage={heroPost?.data.heroImage}
+  jsonLd={jsonLd}
 >
   {allPosts.length === 0 ? (
     <div class="coming-soon container">

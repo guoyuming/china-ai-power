@@ -34,8 +34,8 @@ const { posts, tagName } = Astro.props;
 ---
 
 <BaseLayout
-  title={`${tagName} — ChinaAI`}
-  description={`Articles about ${tagName} on ChinaAI.`}
+  title={`${tagName} — China AI Digest`}
+  description={`${posts.length} article${posts.length !== 1 ? 's' : ''} about ${tagName} on China AI Digest — independent coverage of China's AI industry.`}
 >
   <div class="container">
     <section class="page-header">

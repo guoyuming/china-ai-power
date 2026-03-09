@@ -11,9 +11,11 @@ interface Props {
   canonicalUrl?: string;
   jsonLd?: string;
   preloadImage?: string;
+  type?: 'website' | 'article';
+  noIndex?: boolean;
 }
 
-const { title, description, image, canonicalUrl, jsonLd, preloadImage } = Astro.props;
+const { title, description, image, canonicalUrl, jsonLd, preloadImage, type, noIndex } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -25,6 +27,8 @@ const { title, description, image, canonicalUrl, jsonLd, preloadImage } = Astro.
       image={image}
       canonicalUrl={canonicalUrl}
       jsonLd={jsonLd}
+      type={type}
+      noIndex={noIndex}
     />
     <ViewTransitions />
     {preloadImage && (

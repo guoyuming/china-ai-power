@@ -22,6 +22,7 @@ interface Props {
   readingTime?: string;
   headings?: Heading[];
   pageUrl?: string;
+  tags?: string[];
 }
 
 const {
@@ -34,6 +35,7 @@ const {
   readingTime,
   headings = [],
   pageUrl,
+  tags,
 } = Astro.props;
 
 const formattedDate = formatDate(pubDate);
@@ -42,18 +44,20 @@ const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://chinaaidig
 const resolvedPageUrl = pageUrl ?? canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).toString();
 
 const jsonLd = generateArticleJsonLd(
-  { title, description, pubDate, updatedDate, heroImage },
+  { title, description, pubDate, updatedDate, heroImage, tags },
   siteUrl,
   resolvedPageUrl
 );
 ---
 
 <BaseLayout
-  title={`${title} — ChinaAI`}
+  title={`${title} — China AI Digest`}
   description={description}
   image={heroImage}
   canonicalUrl={canonicalUrl}
   jsonLd={jsonLd}
+  type="article"
+  preloadImage={heroImage}
 >
   <article class="blog-article">
     <!-- Article Header -->

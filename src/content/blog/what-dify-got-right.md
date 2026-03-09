@@ -4,7 +4,7 @@ description: "How Dify grew from an underestimated startup to a phenomenon-level
 pubDate: 2026-03-09
 tags: ["companies"]
 draft: false
-featured: true
+featured: false
 heroImage: "/images/what-dify-got-right.png"
 ---
 

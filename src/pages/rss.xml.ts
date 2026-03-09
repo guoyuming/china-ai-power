@@ -8,8 +8,8 @@ export async function GET(context: APIContext) {
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
   return rss({
-    title: 'ChinaAI',
-    description: 'Stories that matter — technology, design, culture, and travel.',
+    title: 'China AI Digest',
+    description: "China AI Digest — independent coverage of China's AI industry: policy, research, and companies.",
     site: context.site!,
     items: posts.map(post => ({
       title: post.data.title,
