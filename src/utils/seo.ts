@@ -19,7 +19,7 @@ export function generateArticleJsonLd(
     : undefined;
 
   const image = imageUrl
-    ? { '@type': 'ImageObject', url: imageUrl }
+    ? { '@type': 'ImageObject', url: imageUrl, width: 1200, height: 630 }
     : undefined;
 
   const breadcrumb = {
@@ -87,14 +87,6 @@ export function generateSiteJsonLd(siteUrl: string): string {
         '@type': 'WebSite',
         name: 'China AI Digest',
         url: siteUrl,
-        potentialAction: {
-          '@type': 'SearchAction',
-          target: {
-            '@type': 'EntryPoint',
-            urlTemplate: `${siteUrl}/search?q={search_term_string}`,
-          },
-          'query-input': 'required name=search_term_string',
-        },
       },
       {
         '@type': 'Organization',
