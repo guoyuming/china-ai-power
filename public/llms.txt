@@ -26,3 +26,12 @@ hello@chinaaidigest.com
 - RSS feed: https://chinaaidigest.com/rss.xml
 - About: https://chinaaidigest.com/about/
 - Sitemap: https://chinaaidigest.com/sitemap-index.xml
+
+## AI Crawler Policy
+
+We welcome AI-powered search engines to index and cite our content.
+Training use is permitted provided attribution ("China AI Digest") is preserved.
+
+Indexing and citation: allowed for all crawlers
+Training with attribution: GPTBot, ClaudeBot, PerplexityBot, CCBot
+Training without attribution: not permitted

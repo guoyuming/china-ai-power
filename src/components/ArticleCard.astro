@@ -22,6 +22,8 @@ const timeToRead = readingTime(post.body ?? '');
           alt={`Cover image for: ${title}`}
           loading="lazy"
           class="card-image"
+          width={600}
+          height={400}
           transition:name={`hero-/blog/${post.id}`}
         />
       ) : (

@@ -4,7 +4,16 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://chinaaidigest.com',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      serialize(item) {
+        return {
+          ...item,
+          lastmod: new Date().toISOString().split('T')[0],
+        };
+      },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

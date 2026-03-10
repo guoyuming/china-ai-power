@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "indexnow": "bun scripts/submit-indexnow.ts"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.2",
