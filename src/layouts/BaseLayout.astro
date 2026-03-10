@@ -13,9 +13,11 @@ interface Props {
   preloadImage?: string;
   type?: 'website' | 'article';
   noIndex?: boolean;
+  pubDate?: Date;
+  tags?: string[];
 }
 
-const { title, description, image, canonicalUrl, jsonLd, preloadImage, type, noIndex } = Astro.props;
+const { title, description, image, canonicalUrl, jsonLd, preloadImage, type, noIndex, pubDate, tags } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -29,6 +31,8 @@ const { title, description, image, canonicalUrl, jsonLd, preloadImage, type, noI
       jsonLd={jsonLd}
       type={type}
       noIndex={noIndex}
+      pubDate={pubDate}
+      tags={tags}
     />
     <ViewTransitions />
     {preloadImage && (

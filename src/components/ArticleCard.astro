@@ -19,7 +19,7 @@ const timeToRead = readingTime(post.body ?? '');
       {heroImage ? (
         <img
           src={heroImage}
-          alt={title}
+          alt={`Cover image for: ${title}`}
           loading="lazy"
           class="card-image"
           transition:name={`hero-/blog/${post.id}`}

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://noiceland.com/sitemap-index.xml
+Sitemap: https://chinaaidigest.com/sitemap-index.xml

@@ -1,0 +1,28 @@
+# China AI Digest
+
+> Independent coverage of China's artificial intelligence industry — policy, research, and companies.
+
+China AI Digest is an English-language editorial publication tracking developments in China's AI ecosystem. We translate and synthesize primary Chinese-language sources — government filings, research papers, company announcements, and industry reporting — into accurate, in-depth coverage for a global audience.
+
+## Coverage Areas
+
+- **AI Policy**: Chinese government regulations, national strategies, and regulatory filings
+- **Research**: Model releases, technical benchmarks, and breakthroughs from Chinese universities and labs
+- **Companies**: Startups, established tech companies, and funding rounds in China's AI sector
+- **Industry**: Infrastructure, chips, data, and deployment at scale
+
+## Editorial Standards
+
+All articles are grounded in primary Chinese-language sources. Factual claims, numbers, and proper nouns are verified before publication. Corrections are issued promptly.
+
+## Contact
+
+hello@chinaaidigest.com
+
+## Key URLs
+
+- Homepage: https://chinaaidigest.com/
+- Latest articles: https://chinaaidigest.com/latest/
+- RSS feed: https://chinaaidigest.com/rss.xml
+- About: https://chinaaidigest.com/about/
+- Sitemap: https://chinaaidigest.com/sitemap-index.xml
